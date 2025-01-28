@@ -8,17 +8,21 @@ console.log('fontScale: ', fontScale, 'scale: ', scale);
 console.log('width: ', width.toFixed(0), 'height: ', height.toFixed(0));
 
 type props = {
-  primary: string;
-  secondary: string;
-  tertiary: string;
-  quarternary: string;
+  white: string;
+  blue: string;
+  gray: string;
+  black: string;
+  red: string;
+  grayCard: string;
 };
 
 export const Colors: props = {
-  primary: '#FFFFFF',
-  secondary: '#67C4A7',
-  tertiary: '#939393',
-  quarternary: '#000000',
+  white: '#ffffff',
+  blue: '#051d40',
+  gray: '#939393',
+  black: '#000000FF',
+  red: 'red',
+  grayCard: '#f8f8f8',
 };
 
 export const sizeScreen = {

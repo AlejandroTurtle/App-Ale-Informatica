@@ -16,10 +16,12 @@ import grid from '../../assets/icons/grid.png';
 import {useNavigation} from '@react-navigation/native';
 
 export const CustomIconMenu = () => {
-  const navigation = useNavigation(); // Hook de navegação
+  const navigation = useNavigation();
 
-  const handleNavigation = (screenName: string) => {
-    navigation.navigate(screenName);
+  const handleNavigation = (category: string) => {
+    navigation.navigate('ListProducts', {
+      category,
+    });
   };
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     height: dynamicSize(40),
   },
   textIcon: {
-    color: Colors.quarternary,
+    color: Colors.black,
     fontFamily: 'Poppins-Regular',
     fontSize: dynamicSize(12),
     marginTop: dynamicSize(5),

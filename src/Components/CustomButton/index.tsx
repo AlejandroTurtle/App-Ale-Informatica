@@ -5,6 +5,8 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ViewStyle,
+  TextStyle,
 } from 'react-native';
 import {Colors, dynamicSize} from '../../Config';
 
@@ -18,23 +20,27 @@ type propsButton = {
   icon?: string;
   height?: number;
   fontsize?: number;
+  style?: ViewStyle; // Para estilos personalizados no botão principal
+  textStyle?: TextStyle; // Para estilos personalizados no texto
 };
 
 const CustomButton = ({
   title,
   onPress,
-  backgroundColor = Colors.secondary,
-  color = Colors.primary,
+  backgroundColor = Colors.blue,
+  color = Colors.white,
   isLoading,
   width = dynamicSize(320),
   icon,
   height = dynamicSize(60),
   fontsize = dynamicSize(16),
+  style,
+  textStyle,
 }: propsButton) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={[styles.pressable, {backgroundColor, width, height}]}
+        style={[styles.pressable, {backgroundColor, width, height}, style]}
         onPress={() => !isLoading && onPress()}
         disabled={isLoading}>
         <View style={styles.content}>
@@ -43,7 +49,13 @@ const CustomButton = ({
           ) : (
             <>
               {icon && <Text style={[styles.icon, {color}]}>{icon}</Text>}
-              <Text style={[styles.titleText, {color, fontSize: fontsize}]}>
+              <Text
+                style={[
+                  styles.titleText,
+                  {color, fontSize: fontsize},
+                  textStyle,
+                ]}
+                numberOfLines={1}>
                 {title}
               </Text>
             </>

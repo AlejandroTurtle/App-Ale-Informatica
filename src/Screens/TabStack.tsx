@@ -1,10 +1,9 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
-import {RegisterFilm} from './Pages/RegisterFilm';
-import {DisplayContent} from './Pages/DisplayContent';
 import {Colors, dynamicSize} from '../Config';
-import {Home} from './Pages/Home';
+import {HomeStack} from '../Tabs/Home';
+import {CartStack} from '../Tabs/Cart';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +13,7 @@ export const TabStack = () => {
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: Colors.primary,
+          backgroundColor: Colors.white,
           borderTopWidth: 0,
           height: dynamicSize(40),
         },
@@ -23,7 +22,7 @@ export const TabStack = () => {
 
           if (route.name === 'Home') {
             iconName = 'home';
-          } else if (route.name === 'RegisterFilm') {
+          } else if (route.name === 'Cart') {
             iconName = 'shopping-cart';
           } else if (route.name === 'DisplayContent') {
             iconName = 'settings';
@@ -32,18 +31,17 @@ export const TabStack = () => {
           return (
             <Feather
               name={iconName}
-              size={focused ? size + 2 : size} // Tamanho maior quando ativo
+              size={focused ? size + 2 : size}
               color={color}
             />
           );
         },
-        tabBarActiveTintColor: Colors.secondary, // Cor ativa
-        tabBarInactiveTintColor: Colors.tertiary, // Cor inativa
-        tabBarShowLabel: false, // Esconde os labels dos ícones
+        tabBarActiveTintColor: Colors.blue,
+        tabBarInactiveTintColor: Colors.gray,
+        tabBarShowLabel: false,
       })}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="RegisterFilm" component={RegisterFilm} />
-      <Tab.Screen name="DisplayContent" component={DisplayContent} />
+      <Tab.Screen name="Home" component={HomeStack} />
+      <Tab.Screen name="Cart" component={CartStack} />
     </Tab.Navigator>
   );
 };

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginLeft: dynamicSize(10),
     marginRight: dynamicSize(10),
-    color: Colors.tertiary,
+    color: Colors.gray,
   },
   row: {
     flexDirection: 'row',

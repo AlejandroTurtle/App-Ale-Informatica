@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {MainStack} from './src/Screens/MainStack';
 import MyTheme from './src/Config/theme';
 import {LogBox} from 'react-native';
+import {CartProvider} from './src/Context/CartContext';
 
 LogBox.ignoreLogs([
   'Warning: DatePicker: Support for defaultProps will be removed from function components in a future major release.',
@@ -11,9 +12,11 @@ LogBox.ignoreLogs([
 
 const App = () => {
   return (
-    <NavigationContainer theme={MyTheme}>
-      <MainStack />
-    </NavigationContainer>
+    <CartProvider>
+      <NavigationContainer theme={MyTheme}>
+        <MainStack />
+      </NavigationContainer>
+    </CartProvider>
   );
 };
 

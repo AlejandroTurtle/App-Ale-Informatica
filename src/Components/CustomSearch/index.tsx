@@ -16,6 +16,7 @@ const SearchInput = ({value, onChangeText}: SearchInputProps) => {
         <TextInput
           style={styles.input}
           placeholder="Procurar"
+          placeholderTextColor={Colors.gray}
           value={value}
           onChangeText={onChangeText}
         />
@@ -32,13 +33,13 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.white,
     borderRadius: dynamicSize(12),
     paddingHorizontal: dynamicSize(10),
     paddingVertical: dynamicSize(3),
     width: dynamicSize(320),
     borderWidth: dynamicSize(1),
-    borderColor: Colors.tertiary,
+    borderColor: Colors.blue,
   },
   icon: {
     marginRight: dynamicSize(8),
@@ -46,7 +47,6 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: dynamicSize(14),
-    color: Colors.quarternary,
   },
 });
 

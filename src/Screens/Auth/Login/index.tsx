@@ -53,7 +53,7 @@ export const Login = ({navigation, route}: any) => {
   };
   return (
     <>
-      <View style={{flex: 1, backgroundColor: Colors.primary}}>
+      <View style={{flex: 1, backgroundColor: Colors.white}}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.containerTitle}>
             <Text style={styles.title}>Faça seu{'\n'}login</Text>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    color: Colors.tertiary,
+    color: Colors.gray,
     fontFamily: 'Poppins-SemiBold',
   },
   containerInput: {
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     marginBottom: dynamicSize(20),
   },
   forgotPassword: {
-    color: Colors.secondary,
+    color: Colors.blue,
     fontFamily: 'Poppins-Regular',
     marginTop: dynamicSize(20),
     alignSelf: 'flex-end',
@@ -138,12 +138,12 @@ const styles = StyleSheet.create({
   },
   line: {
     height: dynamicSize(1),
-    backgroundColor: Colors.tertiary,
+    backgroundColor: Colors.gray,
     marginVertical: dynamicSize(20),
     opacity: 0.3,
   },
   newAccount: {
-    color: Colors.tertiary,
+    color: Colors.gray,
     fontFamily: 'Poppins-Regular',
     alignSelf: 'center',
     marginBottom: dynamicSize(20),
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     marginBottom: dynamicSize(20),
   },
   text: {
-    color: Colors.secondary,
+    color: Colors.blue,
     fontFamily: 'Poppins-Regular',
     alignSelf: 'center',
     marginBottom: dynamicSize(20),

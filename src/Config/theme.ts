@@ -6,7 +6,7 @@ const MyTheme: Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: Colors.primary,
+    background: Colors.white,
   },
   fonts: {
     regular: {

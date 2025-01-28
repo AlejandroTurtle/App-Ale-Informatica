@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     borderRadius: dynamicSize(10),
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.tertiary,
+    backgroundColor: Colors.gray,
   },
   container: {
     width: dynamicSize(300),
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    color: Colors.secondary,
+    color: Colors.blue,
     fontSize: dynamicSize(20),
     fontFamily: 'Poppins-SemiBold',
     textAlign: 'center',

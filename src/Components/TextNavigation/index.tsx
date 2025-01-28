@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     marginVertical: dynamicSize(20),
   },
   text: {
-    color: Colors.tertiary,
+    color: Colors.gray,
     fontFamily: 'Poppins-Regular',
   },
   link: {
-    color: Colors.secondary,
+    color: Colors.blue,
     fontFamily: 'Poppins-SemiBold',
   },
 });

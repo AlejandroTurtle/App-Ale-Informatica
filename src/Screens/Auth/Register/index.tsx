@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    color: Colors.tertiary,
+    color: Colors.gray,
     fontFamily: 'Poppins-SemiBold',
   },
   form: {
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     marginBottom: dynamicSize(20),
   },
   text: {
-    color: Colors.secondary,
+    color: Colors.blue,
     fontFamily: 'Poppins-Regular',
     alignSelf: 'center',
     marginBottom: dynamicSize(20),

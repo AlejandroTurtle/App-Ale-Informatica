@@ -45,7 +45,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       <TextInput
         style={[styles.input, {height: multiline ? 'auto' : height}]}
         placeholder={placeholder}
-        placeholderTextColor={Colors.tertiary}
+        placeholderTextColor={Colors.gray}
         secureTextEntry={isPassword && !isPasswordVisible}
         value={value}
         onChangeText={onChangeText}
@@ -74,18 +74,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     padding: dynamicSize(10),
     marginTop: dynamicSize(20),
-    backgroundColor: Colors.primary,
-    color: Colors.tertiary,
+    backgroundColor: Colors.white,
+    color: Colors.gray,
     borderWidth: dynamicSize(1),
-    borderColor: Colors.tertiary,
+    borderColor: Colors.gray,
   },
   icon: {
     marginRight: 10,
-    color: Colors.tertiary,
+    color: Colors.gray,
   },
   input: {
     flex: 1,
-    color: Colors.tertiary,
+    color: Colors.gray,
     fontFamily: 'Poppins-Regular',
     textAlignVertical: 'center',
   },
