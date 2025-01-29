@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 import {
   FlatList,
   Image,
@@ -14,22 +14,20 @@ import Feather from 'react-native-vector-icons/Feather';
 import CustomSearch from '../../../Components/CustomSearch';
 import {Colors, dynamicSize} from '../../../Config';
 import {useIndex} from './useIndex';
-import Alert from '../../../Components/Alert';
-import {CustomIconMenu} from '../../../Components/CustomIconMenu';
-import CustomButton from '../../../Components/CustomButton';
 import {Banner, Product} from '../../../types/Product';
 import {Navigation} from '../../../types/Navigation';
-import {CustomHeader} from '../../../Components/CustomHeader';
+import {CustomIconMenu} from '../../../Components/CustomIconMenu';
 
 export const Home = ({navigation, route}: Navigation) => {
   const {
-    searchUser,
-    setSearchUser,
     banner,
     data,
     isLoading,
     navigateFromDetails,
     favoriteProduct,
+    searchProducts,
+    setSearchProducts,
+    filteredProducts,
   } = useIndex({
     navigation,
     route,
@@ -76,7 +74,6 @@ export const Home = ({navigation, route}: Navigation) => {
 
   const renderHeader = () => (
     <>
-      <CustomSearch value={searchUser} onChangeText={setSearchUser} />
       <View>
         {isLoading ? (
           <ActivityIndicator size="large" color={Colors.blue} />
@@ -100,27 +97,51 @@ export const Home = ({navigation, route}: Navigation) => {
     </>
   );
 
+  const renderFilteredProductItem = ({item}: {item: Product}) => (
+    <TouchableOpacity
+      style={styles.filteredProductItem}
+      onPress={() => navigateFromDetails(item.id)}>
+      <Image
+        source={{uri: item.photos[0]}}
+        style={styles.filteredProductImage}
+      />
+      <Text style={styles.filteredProductName}>{item.name}</Text>
+    </TouchableOpacity>
+  );
+
   return (
-    <>
-      <SafeAreaView style={styles.container}>
-        {isLoading ? (
-          <ActivityIndicator size="large" color={Colors.blue} />
-        ) : (
-          <>
-            <FlatList
-              data={data}
-              renderItem={renderProductItem}
-              keyExtractor={item => item.id.toString()}
-              ListHeaderComponent={renderHeader}
-              contentContainerStyle={{paddingBottom: 50}}
-              numColumns={2}
-              columnWrapperStyle={styles.wrapper}
-              showsVerticalScrollIndicator={false}
-            />
-          </>
-        )}
-      </SafeAreaView>
-    </>
+    <SafeAreaView style={styles.container}>
+      {isLoading ? (
+        <ActivityIndicator size="large" color={Colors.blue} />
+      ) : (
+        <>
+          <CustomSearch
+            value={searchProducts}
+            onChangeText={setSearchProducts}
+          />
+          {searchProducts.length > 0 && filteredProducts.length > 0 && (
+            <View style={styles.overlay}>
+              <FlatList
+                data={filteredProducts}
+                renderItem={renderFilteredProductItem}
+                keyExtractor={item => item.id.toString()}
+                style={styles.filteredProductList}
+              />
+            </View>
+          )}
+          <FlatList
+            data={data}
+            renderItem={renderProductItem}
+            keyExtractor={item => item.id.toString()}
+            ListHeaderComponent={renderHeader}
+            contentContainerStyle={{paddingBottom: 50}}
+            numColumns={2}
+            columnWrapperStyle={styles.wrapper}
+            showsVerticalScrollIndicator={false}
+          />
+        </>
+      )}
+    </SafeAreaView>
   );
 };
 
@@ -128,22 +149,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.white,
     flex: 1,
-  },
-  containerTitle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: dynamicSize(20),
-    marginVertical: dynamicSize(15),
-  },
-  title: {
-    fontSize: dynamicSize(18),
-    fontFamily: 'Poppins-SemiBold',
-    color: Colors.black,
-    flex: 1,
-  },
-  icon: {
-    marginLeft: dynamicSize(10),
   },
   carouselItem: {
     justifyContent: 'center',
@@ -173,10 +178,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-SemiBold',
     color: Colors.blue,
     marginLeft: dynamicSize(20),
-  },
-  button: {
-    width: dynamicSize(180),
-    borderRadius: dynamicSize(5),
   },
   card: {
     marginVertical: dynamicSize(10),
@@ -227,5 +228,35 @@ const styles = StyleSheet.create({
     color: Colors.blue,
     marginTop: dynamicSize(8),
     textAlign: 'center',
+  },
+  overlay: {
+    position: 'absolute',
+    top: dynamicSize(60),
+    left: 0,
+    right: 0,
+    backgroundColor: Colors.white,
+    zIndex: 1,
+    borderRadius: dynamicSize(10),
+  },
+  filteredProductList: {
+    maxHeight: dynamicSize(200),
+  },
+  filteredProductItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: dynamicSize(10),
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.grayCard,
+  },
+  filteredProductImage: {
+    width: dynamicSize(40),
+    height: dynamicSize(40),
+    marginRight: dynamicSize(10),
+  },
+  filteredProductName: {
+    fontSize: dynamicSize(14),
+    color: Colors.black,
+    flex: 1,
+    flexWrap: 'wrap',
   },
 });

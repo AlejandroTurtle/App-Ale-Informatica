@@ -21,7 +21,7 @@ export const ProductDetails = ({navigation, route}: Navigation) => {
   console.log('produ', product?.photos);
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <CustomHeader title="Detalhes do produto" />
 
       {product ? (

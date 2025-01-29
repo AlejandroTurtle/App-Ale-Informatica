@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ActivityIndicator,
   FlatList,
   Image,
   StyleSheet,
@@ -65,25 +66,23 @@ export const ListProducts = ({navigation, route}: Navigation) => {
     <>
       <CustomHeader title="Produtos" />
       <CustomSearch value={searchUser} onChangeText={setSearchUser} />
-
-      <FlatList
-        data={product}
-        numColumns={2}
-        keyExtractor={item => String(item.id)}
-        renderItem={({item}) => (
-          <CardProduct
-            product={item}
-            favoriteProduct={favoriteProduct}
-            navigateFromDetails={navigateFromDetails}
-          />
-        )}
-        ListEmptyComponent={() => (
-          <View
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>Nenhum produto encontrado</Text>
-          </View>
-        )}
-      />
+      {product !== null && (
+        <FlatList
+          data={product}
+          numColumns={2}
+          keyExtractor={item => String(item.id)}
+          renderItem={({item}) => (
+            <CardProduct
+              product={item}
+              favoriteProduct={favoriteProduct}
+              navigateFromDetails={navigateFromDetails}
+            />
+          )}
+          ListEmptyComponent={() => (
+            <ActivityIndicator size="large" color={Colors.blue} />
+          )}
+        />
+      )}
     </>
   );
 };

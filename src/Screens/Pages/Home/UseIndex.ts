@@ -6,27 +6,31 @@ import {Navigation} from '../../../types/Navigation';
 import {useCart} from '../../../Context/CartContext';
 
 export const useIndex = ({navigation, route}: Navigation) => {
-  const [searchUser, setSearchUser] = useState('');
+  const [searchProducts, setSearchProducts] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [banner, setBanner] = useState<Banner[]>([]);
   const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Product[]>([]);
   const {addToCart} = useCart();
-  //   const filteredData = data.filter(item =>
-  //     item.name.toLowerCase().includes(searchUser.toLowerCase()),
-  //   );
 
   useEffect(() => {
     const focusListener = navigation.addListener('focus', () => {
       getProductsBanner();
-      getProducts();
+      cheaperProducts();
     });
 
     return () => {
       focusListener();
     };
   }, [navigation]);
+
+  useEffect(() => {
+    findProducts();
+  }, []);
+
   const getProductsBanner = async () => {
     try {
       const response = await axios.get(`${baseURL}/products/banner`);
@@ -46,9 +50,9 @@ export const useIndex = ({navigation, route}: Navigation) => {
     }
   };
 
-  const getProducts = async () => {
+  const cheaperProducts = async () => {
     try {
-      const response = await axios.get(`${baseURL}/product`);
+      const response = await axios.get(`${baseURL}/products/cheaper`);
 
       const mappedData = response.data.map((item: Product) => ({
         id: item.id,
@@ -65,6 +69,39 @@ export const useIndex = ({navigation, route}: Navigation) => {
     }
   };
 
+  const findProducts = async () => {
+    try {
+      const response = await axios.get(`${baseURL}/products`);
+
+      const mappedData = response.data.map((item: Product) => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        photos: item.photos,
+        description: item.description,
+        category: item.category,
+      }));
+      setAllProducts(mappedData);
+      setFilteredProducts(mappedData);
+    } catch (err) {
+      console.log('ero', err);
+      setShowAlert(true);
+    }
+  };
+
+  useEffect(() => {
+    if (searchProducts) {
+      const filtered = allProducts.filter((product: Product) =>
+        product.name.toLowerCase().includes(searchProducts.toLowerCase()),
+      );
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(allProducts);
+    }
+  }, [searchProducts, allProducts]);
+
+  console.log('produtos', searchProducts);
+
   const navigateFromDetails = (id: number) => {
     navigation.navigate('ProductDetails', {id});
   };
@@ -76,9 +113,6 @@ export const useIndex = ({navigation, route}: Navigation) => {
   const favoriteProduct = () => {};
 
   return {
-    // data: filteredData,
-    searchUser,
-    setSearchUser,
     showAlert,
     setShowAlert,
     error,
@@ -88,5 +122,8 @@ export const useIndex = ({navigation, route}: Navigation) => {
     navigateFromDetails,
     handleAddToCart,
     favoriteProduct,
+    searchProducts,
+    setSearchProducts,
+    filteredProducts,
   };
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors, dynamicSize} from '../../Config';
 
@@ -8,7 +8,7 @@ interface SearchInputProps {
   onChangeText: (text: string) => void;
 }
 
-const SearchInput = ({value, onChangeText}: SearchInputProps) => {
+const CustomSearch = ({value, onChangeText}: SearchInputProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchInput;
+export default CustomSearch;
