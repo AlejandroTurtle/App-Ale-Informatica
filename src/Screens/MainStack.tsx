@@ -9,7 +9,7 @@ export const MainStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{}}
-      // initialRouteName="Tabs" // Define a rota inicial
+      initialRouteName="Tabs" // Define a rota inicial
     >
       <Stack.Screen
         name="AuthStack"

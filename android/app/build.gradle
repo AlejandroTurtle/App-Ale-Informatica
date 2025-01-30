@@ -79,7 +79,7 @@ android {
 
     namespace "com.projetopessoal"
     defaultConfig {
-        applicationId "com.projetopessoal"
+        applicationId "com.aleinformatica"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
