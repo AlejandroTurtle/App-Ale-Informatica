@@ -3260,6 +3260,7 @@ __metadata:
     react: 18.3.1
     react-native: 0.76.5
     react-native-device-info: ^14.0.2
+    react-native-image-zoom-viewer: ^3.0.1
     react-native-modern-datepicker: ^1.0.0-beta.91
     react-native-safe-area-context: ^5.0.0
     react-native-screens: ^4.3.0
@@ -8546,6 +8547,28 @@ __metadata:
   peerDependencies:
     react-native: "*"
   checksum: c1825a31514f0de08947de7876a361e53b3449fc84e34aace9b881a77f7ecf85e58b3c04eaa8b46c5d4d1fb911d95a73b229d2b98c5bce61bc5be5b89e071ec9
+  languageName: node
+  linkType: hard
+
+"react-native-image-pan-zoom@npm:^2.1.12":
+  version: 2.1.12
+  resolution: "react-native-image-pan-zoom@npm:2.1.12"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 826ed254d27b079cb985b63c65d0f504f11987b68ae71bac0e1c0e99dc24d5816fc9b8d053eb04737c60c018ad520a1e9c4b99af26952646ccabe9fc2b3bd64f
+  languageName: node
+  linkType: hard
+
+"react-native-image-zoom-viewer@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "react-native-image-zoom-viewer@npm:3.0.1"
+  dependencies:
+    react-native-image-pan-zoom: ^2.1.12
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: bd32e382100fece8f815bacabe276f8f05a7c1edc1ff8485149fd863780de7d11a1a8241b837adad957e53ce1e19ef249410fdb312bc43fb7071b57fb879b78d
   languageName: node
   linkType: hard
 

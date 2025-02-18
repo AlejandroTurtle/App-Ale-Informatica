@@ -14,6 +14,7 @@ import mouse from '../../assets/icons/mouse.png';
 import processador from '../../assets/icons/processador.png';
 import grid from '../../assets/icons/grid.png';
 import {useNavigation} from '@react-navigation/native';
+import game from '../../assets/icons/game.png';
 
 export const CustomIconMenu = () => {
   const navigation = useNavigation();
@@ -46,9 +47,9 @@ export const CustomIconMenu = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.iconWrapper}
-          onPress={() => handleNavigation('Mouse')}>
-          <Image source={mouse} style={styles.iconMenu} />
-          <Text style={styles.textIcon}>Mouse</Text>
+          onPress={() => handleNavigation('Consoles')}>
+          <Image source={game} style={styles.iconMenu} />
+          <Text style={styles.textIcon}>Consoles</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.iconWrapper}

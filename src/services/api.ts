@@ -1,1 +1,1 @@
-export const baseURL = 'https://api-aleinformatica.onrender.com/api';
+export const baseURL = 'https://api.apps.tec.br/ale/api';

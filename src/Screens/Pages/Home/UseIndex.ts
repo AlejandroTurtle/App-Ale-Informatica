@@ -16,19 +16,21 @@ export const useIndex = ({navigation, route}: Navigation) => {
   const [data, setData] = useState<Product[]>([]);
   const {addToCart} = useCart();
 
-  useEffect(() => {
-    const focusListener = navigation.addListener('focus', () => {
-      getProductsBanner();
-      cheaperProducts();
-    });
+  // useEffect(() => {
+  //   const focusListener = navigation.addListener('focus', () => {
+  //     getProductsBanner();
+  //     cheaperProducts();
+  //   });
 
-    return () => {
-      focusListener();
-    };
-  }, [navigation]);
+  //   return () => {
+  //     focusListener();
+  //   };
+  // }, [navigation]);
 
   useEffect(() => {
     findProducts();
+    cheaperProducts();
+    getProductsBanner();
   }, []);
 
   const getProductsBanner = async () => {

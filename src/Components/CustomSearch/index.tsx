@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors, dynamicSize} from '../../Config';
 
@@ -20,6 +20,15 @@ const CustomSearch = ({value, onChangeText}: SearchInputProps) => {
           value={value}
           onChangeText={onChangeText}
         />
+        {value.length > 0 && (
+          <TouchableOpacity onPress={() => onChangeText('')}>
+            <MaterialCommunityIcons
+              name="close"
+              size={20}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
